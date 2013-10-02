@@ -16,7 +16,7 @@ jQuery.fn.extend({
 				var event = trigger.attr('data-on');
 	
 				//trigger init
-				jQuery(window).trigger(action+'-init', this);
+				jQuery(window).trigger(action+'-init', [this]);
 	
 				if(!event) {
 					return;
@@ -27,7 +27,7 @@ jQuery.fn.extend({
 						//mod the custom event type
 						e.type = action+'-'+event;
 						//pass it along
-						$(window).trigger(e, this);
+						$(window).trigger(e, [this]);
 					});
 				});
 			});
