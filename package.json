@@ -1,0 +1,9 @@
+{
+  "name": "doon",
+  "version": "1.0.0",
+  "description": "super light weight event driven containers",
+  "main": "doon.js",
+  "repository": "https://github.com/cblanquera/doon.git",
+  "author": "Christian Blanquera <cblanquera@openovate.com>",
+  "license": "MIT"
+}
