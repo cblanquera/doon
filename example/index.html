@@ -5,9 +5,11 @@
 </head>
 <body>
     <h1>Do On - Super light weight event driven containers.</h1>
+    <div id="target"></div>
     <div data-do="trigger" data-on="click|mouseout|mouseover"></div>
+    <div data-do="trigger" data-doon-target="#target" data-on="click|mouseout|mouseover"></div>
 
-    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="doon.js"></script>
     <script type="text/javascript">
     $(window).on('trigger-init', function(e, target) {
