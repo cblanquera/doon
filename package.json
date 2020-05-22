@@ -1,6 +1,6 @@
 {
   "name": "doon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "super light weight event driven containers",
   "main": "doon.js",
   "repository": "https://github.com/cblanquera/doon.git",
