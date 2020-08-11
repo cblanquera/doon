@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Do On - Super light weight event driven containers.</title>
+</head>
+<body>
+    <h1>Do On - Super light weight event driven containers.</h1>
+    <form method="post" data-do="submit1|submit2" data-on="submit">
+      <div class="message"></div>
+      <button>Start</button>
+    </form>
+
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="doon.js"></script>
+    <script type="text/javascript">
+    $(window).on('submit1-init', function(e, target) {
+        $('div.message', target).html('init1');
+    }).on('submit2-init', function(e, target) {
+        $('div.message', target).html($('div.message', target).html() + 'init2');
+    }).on('submit1-submit', function(e, target) {
+        $('div.message', target).css('color', 'red');
+        e.return = false;
+    }).on('submit2-submit', function(e, target) {
+        $('div.message', target).css('color', 'blue');
+    });
+
+    $('form').doon();
+    </script>
+</body>
+</html>

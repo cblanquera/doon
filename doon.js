@@ -1,7 +1,7 @@
 /**
  * Do On - Super light weight event driven containers.
  *
- * @version 0.0.2
+ * @version 1.0.2
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/doon
  * @license MIT
@@ -13,12 +13,13 @@ jQuery.fn.extend({
       .each(function() {
         var trigger = jQuery(this);
 
-        var action = trigger.attr('data-do');
+        var actions = trigger.attr('data-do');
 
-        if(!action || trigger.data('doon')) {
+        if(!actions || trigger.data('doon')) {
           return;
         }
 
+        actions = actions.split('|');
         trigger.data('doon', true);
 
         var event = trigger.attr('data-on');
@@ -29,7 +30,9 @@ jQuery.fn.extend({
         }
 
         //trigger init
-        jQuery(window).trigger(action+'-init', [target]);
+        actions.forEach(function(action) {
+          jQuery(window).trigger(action+'-init', [target]);
+        });
 
         if(!event) {
           return;
@@ -37,10 +40,19 @@ jQuery.fn.extend({
 
         jQuery.each(event.split('|'), function(i, event) {
           jQuery(target).on(event, function(e) {
-            //mod the custom event type
-            e.type = action+'-'+event;
-            //pass it along
-            jQuery(window).trigger(e, [target]);
+            actions.some(function(action) {
+              //mod the custom event type
+              e.type = action + '-' + event;
+              //pass it along
+              jQuery(window).trigger(e, [target]);
+
+              return e.return === false
+            });
+
+            //so you can stop a form
+            if (e.return === false) {
+              return false;
+            }
           });
         });
       });
